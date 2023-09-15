@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Detalles del Producto -->
+    <div class="col-md-8">
+      <div class="card">
+        <img class="card-img-top" src="{{producto.imagenUrl}}" alt="Product Image" />
+        <div class="card-body">
+          <h5 class="card-title">{{producto.nombre}}</h5>
+          <p class="card-text">{{producto.descripcion}}</p>
+          <p class="card-text">Precio: $199.99</p>
+          <p class="card-text">Stock: Disponible</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- <button class="btn btn-primary" (click)="comprar()">Comprar</button>
+            <button class="btn btn-secondary" (click)="agregarAlCarrito()">Añadir al Carrito</button>-->
+          </div>
+          <div class="mt-3">
+            <span>Calificación del vendedor: 4.5</span>
+            <div>
+              <span>Comentarios de Compradores:</span>
+              <ul>
+                <li>¡Muy buena silla!</li>
+                <li>Me gustó mucho el producto.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-3">
+            <app-star-rating [rating]="4.5" [readonly]="true"></app-star-rating>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preguntas y Respuestas -->
+      <div class="mt-4">
+        <h2>Preguntas y Respuestas</h2>
+        <!-- Aquí puedes mostrar las preguntas y respuestas -->
+      </div>
+    </div>
+
+    <!-- Otros Productos Similares -->
+    <div class="col-md-4">
+      <h2>Otros Productos Similares</h2>
+      <!-- Aquí puedes mostrar otros productos similares -->
+    </div>
+  </div>
+</div>

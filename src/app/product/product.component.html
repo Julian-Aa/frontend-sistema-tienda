@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h1>Productos</h1>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos">
+      <a href="comprar/{{producto.productoId}}"
+        ><div class="card mb-4">
+          <img
+            class="card-img-top"
+            src="{{ producto.imagenUrl }}"
+            alt="{{ producto.nombre }}"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <p class="card-text">{{ producto.descripcion }}</p>
+            <p class="card-text">
+              <strong>Precio: ${{ producto.precio }}</strong>
+            </p>
+          </div>
+        </div></a
+      >
+    </div>
+  </div>
+</div>
