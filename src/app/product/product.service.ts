@@ -31,5 +31,11 @@ export class ProductoService {
   delete(id: number) {
     return this.http.delete('http://localhost:8080/api/productos' + id);
   }
+  getProductsByCategory(categoryId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/categoria/${categoryId}`);
+  }
+  getCategories(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>('http://localhost:8080/api/categorias');
+  }
 }
 

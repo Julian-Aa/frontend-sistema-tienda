@@ -12,11 +12,9 @@ import { ComprarComponent } from './comprar/comprar.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
-import { SellProductComponent } from './sell-product/sell-product.component';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
-import { FormularioCompraComponent } from './formulario-compra/formulario-compra.component';
-import { AdminProveedoresComponent } from './admin-proveedores/admin-proveedores.component'; // Asegúrate de importar ReactiveFormsModule
+import { AdminProveedoresComponent } from './admin-proveedores/admin-proveedores.component';
+import { ListaElementosComponent } from './lista-elementos/lista-elementos.component'; // Asegúrate de importar ReactiveFormsModule
 
 @NgModule({
   declarations: [
@@ -28,11 +26,9 @@ import { AdminProveedoresComponent } from './admin-proveedores/admin-proveedores
     ComprarComponent,
     StarRatingComponent,
     LoginComponent,
-    RegistroUsuarioComponent,
-    SellProductComponent,
     CompraRealizadaComponent,
-    FormularioCompraComponent,
     AdminProveedoresComponent,
+    ListaElementosComponent,
   ],
   imports: [
     BrowserModule,

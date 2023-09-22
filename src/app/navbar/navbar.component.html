@@ -16,30 +16,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="productos">Productos</a>
       </li>
-      <li class="nav-item dropdown">
-        <!-- Agregamos la clase "dropdown" -->
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Categorías
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <div *ngFor="let categoria of categorias">
-            <a class="dropdown-item" href="#">{{ categoria.name }}</a>
-          </div>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/lista-productos">categorias</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="vender">Ofertas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Historial</a>
+        <a class="nav-link" href="lista-elementos">Historial</a>
       </li>
     </ul>
     <form class="form-inline ml-auto">

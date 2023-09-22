@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductoComponent } from './product/product.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { LoginComponent } from './login/login.component';
-import{ RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
-import { SellProductComponent } from './sell-product/sell-product.component';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
+import { ListaElementosComponent } from './lista-elementos/lista-elementos.component';
 
 
 const routes: Routes = [
@@ -13,11 +12,8 @@ const routes: Routes = [
   { path: 'comprar/:id', component: ComprarComponent  },
   { path: '', redirectTo: 'productos', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroUsuarioComponent },
-  { path: 'vender', component: SellProductComponent },
   { path: 'compra-realizada', component: CompraRealizadaComponent }, // Agrega la ruta para la compra realizada
-  { path: 'registro-usuario', component: RegistroUsuarioComponent }, // Agrega la ruta para la compra realizada
-
+  {path: 'lista-productos', component: ListaElementosComponent}
 ];
 
 @NgModule({
