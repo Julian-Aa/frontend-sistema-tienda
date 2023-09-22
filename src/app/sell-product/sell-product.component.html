@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2>Vender un producto</h2>
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="productName">Nombre del producto</label>
+      <input type="text" class="form-control" id="productName" placeholder="Ingrese el nombre del producto" [(ngModel)]="productName" name="productName">
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Descripción del producto</label>
+      <textarea class="form-control" id="productDescription" rows="3" placeholder="Ingrese la descripción del producto" [(ngModel)]="productDescription" name="productDescription"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="productPrice">Precio del producto</label>
+      <input type="number" class="form-control" id="productPrice" placeholder="Ingrese el precio del producto" [(ngModel)]="productPrice" name="productPrice">
+    </div>
+    <div class="form-group">
+      <label for="productQuantity">Cantidad del producto</label>
+      <input type="number" class="form-control" id="productQuantity" placeholder="Ingrese la cantidad del producto" name="productQuantity">
+    </div>
+    <div class="form-group">
+      <label for="productImage">Imagen del producto</label>
+      <input type="file" class="form-control-file" id="productImage" name="productImage" accept="image/*">
+    </div>
+    <div *ngIf="imageUrl">
+      <img [src]="imageUrl" alt="Vista previa de la imagen" width="200">
+    </div>
+    <button type="submit" class="btn btn-primary">Vender</button>
+  </form>
+</div>

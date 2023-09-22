@@ -7,11 +7,14 @@ import { Categoria } from './categoria.model';
 })
 export class CategoriaService {
 
-  private apiUrl = 'http://localhost:8080/categorias'; // ajusta esta URL según tu backend
+  private apiUrl = 'http://localhost:8080/api/categorias'; // ajusta esta URL según tu backend
 
   constructor(private http: HttpClient) {}
 
   get(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.apiUrl);
+  }
+  getById(id:number): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(this.apiUrl + id);
   }
 }

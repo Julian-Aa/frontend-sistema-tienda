@@ -15,4 +15,8 @@ export class NavbarComponent implements OnInit {
       this.categorias = categorias;
     });
   }
+  obtenerCategoriaPorId(id: number): string | undefined {
+    const categoriaEncontrada = this.categorias.find(categoria => categoria.categoryId === id);
+    return categoriaEncontrada ? categoriaEncontrada.name : undefined;
+  }
 }

@@ -1,27 +1,13 @@
-export class Producto {
-  productoId: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  imagenUrl: string;
-  cantidad: number;
-  proveedor: string;
+import { Proveedor } from "../admin-proveedores/Proveedor.model";
+import { Categoria } from "../navbar/categoria.model";
 
-  constructor(
-    productoId: number,
-    nombre: string,
-    descripcion: string,
-    precio: number,
-    imagenUrl: string,
-    cantidad: number,
-    proovedor: string
-  ) {
-    this.productoId = productoId;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precio = precio;
-    this.imagenUrl = imagenUrl;
-    this.cantidad = cantidad;
-    this.proveedor = proovedor;
-  }
+export class Producto {
+  productoId!: number;
+  name!: string;
+  description!: string;
+  price!: number;
+  quantity!: number;
+  image!: string;
+  category!: Categoria;
+  proveedorId!: Proveedor;
 }

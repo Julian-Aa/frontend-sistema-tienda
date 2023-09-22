@@ -11,11 +11,36 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms'; // Asegúrate de importar ReactiveFormsModule
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { SellProductComponent } from './sell-product/sell-product.component';
+import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
+import { FormularioCompraComponent } from './formulario-compra/formulario-compra.component';
+import { AdminProveedoresComponent } from './admin-proveedores/admin-proveedores.component'; // Asegúrate de importar ReactiveFormsModule
 
 @NgModule({
-  declarations: [AppComponent, ProductoComponent, FooterComponent, HeaderComponent, NavbarComponent, ComprarComponent, StarRatingComponent, LoginComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  declarations: [
+    AppComponent,
+    ProductoComponent,
+    FooterComponent,
+    HeaderComponent,
+    NavbarComponent,
+    ComprarComponent,
+    StarRatingComponent,
+    LoginComponent,
+    RegistroUsuarioComponent,
+    SellProductComponent,
+    CompraRealizadaComponent,
+    FormularioCompraComponent,
+    AdminProveedoresComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

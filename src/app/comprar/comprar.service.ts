@@ -7,7 +7,7 @@ import { Producto }from 'src/app/product/product.model'
   providedIn: 'root',
 })
 export class ComprarService {
-  private apiUrl = 'http://localhost:8080/productos'; // ajusta esta URL según tu backend
+  private apiUrl = 'http://localhost:8080/api/productos'; // ajusta esta URL según tu backend
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class ComprarService {
   }
   
   getById(id: number) {
-    const url = `http://localhost:8080/productos/${id}`;
+    const url = `http://localhost:8080/api/productos/${id}`;
     return this.http.get(url);
   }
   
@@ -31,5 +31,14 @@ export class ComprarService {
 
   delete(id: number) {
     return this.http.delete('http://localhost:8080/productos' + id);
+  }
+  mostrarFormulario: boolean = false;
+
+  mostrarFormularioCompra(): void {
+    this.mostrarFormulario = true;
+  }
+
+  ocultarFormularioCompra(): void {
+    this.mostrarFormulario = false;
   }
 }
