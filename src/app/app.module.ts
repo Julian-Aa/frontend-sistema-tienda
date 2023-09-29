@@ -13,8 +13,10 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
-import { AdminProveedoresComponent } from './admin-proveedores/admin-proveedores.component';
-import { ListaElementosComponent } from './lista-elementos/lista-elementos.component'; // Asegúrate de importar ReactiveFormsModule
+import { CreateUserComponent } from './create-user/create-user.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { CreateProviderComponent } from './create-provider/create-provider.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,10 @@ import { ListaElementosComponent } from './lista-elementos/lista-elementos.compo
     StarRatingComponent,
     LoginComponent,
     CompraRealizadaComponent,
-    AdminProveedoresComponent,
-    ListaElementosComponent,
+    CreateUserComponent,
+    CreateProductComponent,
+    CreateProviderComponent,
+    CreateCategoryComponent,
   ],
   imports: [
     BrowserModule,

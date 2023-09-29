@@ -1,25 +1,45 @@
-<div class="container mt-4">
-  <h1>Productos</h1>
+<div class="container">
+  <h1 class="my-4">Lista de Productos</h1>
+
   <div class="row">
-    <div class="col-md-4" *ngFor="let producto of productos">
-      <a href="comprar/{{ producto.productoId }}"
-        ><div class="card mb-4">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="categorySelect">Seleccione una categoría:</label>
+        <select
+          class="form-control"
+          id="categorySelect"
+          [(ngModel)]="selectedCategoryId"
+          (change)="filterProducts()"
+        >
+          <option value="0">Todas las categorías</option>
+          <option
+            *ngFor="let category of categories"
+            [value]="category.categoryId"
+          >
+            {{ category.name }}
+          </option>
+          <!-- Agrega opciones para todas tus categorías aquí -->
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of filteredProducts">
+      <a href="comprar/{{ product.productoId }}">
+        <div class="card mb-4 h-100">
           <img
             class="card-img-top"
-            src="{{ producto.image }}"
-            alt="{{ producto.name }}"
+            src="{{ product.image }}"
+            alt="{{ product.name }}"
+            style="height: 250px"
           />
           <div class="card-body">
-            <h5 class="card-title">{{ producto.name }}</h5>
-            <p class="card-text"><strong>Categoria:</strong> {{ producto.category.name }}</p>
-            <p class="card-text"><strong>Descripcion:</strong> {{ producto.description }}</p>
-            <p class="card-text">
-              <strong>Precio: ${{ producto.price }}</strong>
-            </p>
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Precio: {{ product.price }}</p>
+            <p class="card-text">Categoría: {{ product.categoryName }}</p>
           </div>
         </div>
-        </a
-      >
+      </a>
     </div>
   </div>
 </div>

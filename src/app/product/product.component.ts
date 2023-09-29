@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './product.model';
 import { ProductoService } from './product.service';
-import { BehaviorSubject } from 'rxjs';
 import { Categoria } from '../navbar/categoria.model';
-import { CategoriaService } from '../navbar/categoria.service';
 
 @Component({
   selector: 'app-producto',
@@ -11,27 +9,40 @@ import { CategoriaService } from '../navbar/categoria.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductoComponent implements OnInit {
-  productos: Producto[] = [];
-  categorias: Categoria[] = [];
+  categories!: Categoria[]; // Almacena las categorías obtenidas del backend
+  selectedCategoryId: number = 0; // Almacena la categoría seleccionada por el usuario
+  products!: Producto[]; // Almacena todos los productos obtenidos del backend
+  filteredProducts!: any[];
 
-  private productosSubject = new BehaviorSubject<Producto[]>(this.productos);
-  constructor(
-    private productoService: ProductoService,
-    private categoriaService: CategoriaService
-  ) {}
+  constructor(private productService: ProductoService) {}
   ngOnInit(): void {
-    this.productoService.get().subscribe((productos) => {
-      this.productos = productos;
-      console.log(this.productos)
+    this.productService.get().subscribe((productos) => {
+      this.products = productos;
+      console.log(this.products);
     });
-    this.categoriaService.get().subscribe((categorias) => {
-      this.categorias = categorias;
+    this.loadCategories();
+    this.loadProducts();
+  }
+  loadCategories() {
+    this.productService.getCategories().subscribe((data) => {
+      this.categories = data;
     });
   }
-  obtenerCategoriaPorId(id: number): string | undefined {
-    const categoriaEncontrada = this.categorias.find(
-      (categoria) => categoria.categoryId === id
-    );
-    return categoriaEncontrada ? categoriaEncontrada.name : undefined;
+
+  loadProducts() {
+    this.productService.get().subscribe((data) => {
+      this.products = data;
+      this.filterProducts();
+    });
+  }
+
+  filterProducts() {
+    if (this.selectedCategoryId == 0) {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter(
+        (product) => product.category.categoryId == this.selectedCategoryId
+      );
+    }
   }
 }

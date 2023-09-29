@@ -1,31 +1,25 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service'; // Importa el servicio de autenticación
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [LoginService],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+  loginData: any = {}; // Objeto para almacenar las credenciales de inicio de sesión
 
-  constructor(private authService: LoginService) {}
+  constructor(private authService: AuthService) {}
 
-  onSubmit() {
-    // Llama al servicio de autenticación para intentar iniciar sesión
-    this.authService.login(this.username, this.password).subscribe(
-      (response: any) => {
-        // Maneja la respuesta exitosa, por ejemplo, redirecciona al usuario a una página de inicio.
-        console.log('Inicio de sesión exitoso', response);
-        // Puedes redirigir al usuario a una página de inicio aquí.
+  login() {
+    this.authService.login(this.loginData).subscribe(
+      (response) => {
+        console.log('Inicio de sesión exitoso:', response);
+        // Puedes redirigir al usuario a otra página después del inicio de sesión exitoso.
       },
-      (error: any) => {
-        // Maneja los errores, por ejemplo, muestra un mensaje de error al usuario.
-        console.error('Error durante el inicio de sesión', error);
-        this.errorMessage = 'Nombre de usuario o contraseña incorrectos';
+      (error) => {
+        console.error('Error al iniciar sesión:', error);
+        // Maneja el error aquí, muestra un mensaje de error o realiza acciones necesarias.
       }
     );
   }

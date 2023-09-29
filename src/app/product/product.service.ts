@@ -18,12 +18,10 @@ export class ProductoService {
   getById(id:number): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.apiUrl + id);
   }
-  create(product: Producto, image: File) {
-    const formData = new FormData();
-    formData.append('producto', JSON.stringify(product));
-    formData.append('file', image);
-    return this.http.post('http://localhost:8080/api/productos', product);
+  createProduct(product: Producto): Observable<any> {
+    return this.http.post(this.apiUrl, product);
   }
+
   update(id: number, producto: any) {
     return this.http.put('http://localhost:8080/api/productos' + id, producto);
   }

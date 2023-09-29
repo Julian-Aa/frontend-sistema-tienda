@@ -1,4 +1,4 @@
-import { Proveedor } from "../admin-proveedores/Proveedor.model";
+import { Provider } from "@angular/core";
 import { Categoria } from "../navbar/categoria.model";
 
 export class Producto {
@@ -9,5 +9,5 @@ export class Producto {
   quantity!: number;
   image!: string;
   category!: Categoria;
-  proveedorId!: Proveedor;
+  proveedor!: Provider;
 }
