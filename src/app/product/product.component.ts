@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './product.model';
 import { ProductoService } from './product.service';
-import { Categoria } from '../navbar/categoria.model';
+import { Categoria } from '../create-category/category.model';
 
 @Component({
   selector: 'app-producto',

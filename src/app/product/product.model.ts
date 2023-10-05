@@ -1,5 +1,5 @@
-import { Provider } from "@angular/core";
-import { Categoria } from "../navbar/categoria.model";
+import { Categoria } from "../create-category/category.model";
+import { Provider } from "../create-provider/provider.model";
 
 export class Producto {
   productoId!: number;

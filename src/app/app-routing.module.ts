@@ -7,6 +7,7 @@ import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.co
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { CreateProviderComponent } from './create-provider/create-provider.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 
 const routes: Routes = [
   { path: 'productos', component: ProductoComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'compra-realizada', component: CompraRealizadaComponent },
   { path: 'create-user', component: CreateUserComponent },
   { path: 'create-product', component: CreateProductComponent },
-  { path: 'create-provider', component: CreateProviderComponent}
+  { path: 'create-provider', component: CreateProviderComponent},
+  {path: 'create-category', component:CreateCategoryComponent}
 ];
 
 @NgModule({
