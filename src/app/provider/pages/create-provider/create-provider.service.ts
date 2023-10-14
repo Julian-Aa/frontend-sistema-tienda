@@ -14,7 +14,16 @@ export class CreateProviderService {
   getProvider(): Observable<Provider[]> {
     return this.http.get<Provider[]>(this.apiUrl);
   }
+  getProviderByID(id: number): Observable<Provider[]> {
+    return this.http.get<Provider[]>('http://localhost:8080/api/provider/' + id);
+  }
   createProvider(provider: Provider): Observable<any> {
     return this.http.post(this.apiUrl, provider);
+  }
+  put(id: number, provider: Provider): Observable<any> {
+    return this.http.put('http://localhost:8080/api/provider/' + id, provider);
+  }
+  delete(id: number) {
+    return this.http.delete('http://localhost:8080/api/provider/' + id);
   }
 }

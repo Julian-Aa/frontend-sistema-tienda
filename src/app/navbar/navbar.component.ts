@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriaService } from '../create-category/create-category.service';
-import { Categoria } from '../create-category/category.model';
+import { CategoriaService } from '../categoria/pages/create-category/create-category.service';
+import { Categoria } from '../categoria/pages/create-category/category.model';
 import { Producto } from '../product/product.model';
 import { ProductoService } from '../product/product.service';
 

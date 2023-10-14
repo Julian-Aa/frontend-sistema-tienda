@@ -42,12 +42,3 @@
     color: #fff;
 }
 
-/* Estilo para los enlaces de inicio de sesión/registro */
-.navbar-nav .nav-item:last-child .nav-link {
-    color: #007BFF;
-    font-weight: bold;
-}
-
-.navbar-nav .nav-item:last-child .nav-link:hover {
-    text-decoration: underline;
-}

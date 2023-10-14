@@ -1,5 +1,5 @@
-import { Categoria } from "../create-category/category.model";
-import { Provider } from "../create-provider/provider.model";
+import { Categoria } from "../categoria/pages/create-category/category.model";
+import { Provider } from "../provider/pages/create-provider/provider.model";
 
 export class Producto {
   productoId!: number;

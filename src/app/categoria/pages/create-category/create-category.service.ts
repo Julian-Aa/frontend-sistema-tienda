@@ -20,4 +20,7 @@ export class CategoriaService {
   post(categoria: Categoria): Observable<any> {
     return this.http.post(this.apiUrl, categoria);
   }
+  delete(id: number) {
+    return this.http.delete('http://localhost:8080/api/categorias/' + id);
+  }
 }

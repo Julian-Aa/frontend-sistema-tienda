@@ -14,10 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { CreateProviderComponent } from './create-provider/create-provider.component';
-import { CreateCategoryComponent } from './create-category/create-category.component';
-
+import { CloudinaryModule } from '@cloudinary/ng'; 
+import { Cloudinary } from 'cloudinary-core';
+const cloudinary = {
+  Cloud_Name: 'dnmrig3sg',
+  Api_Key: '899317648988111',
+  Api_Secret: 'rfksATKT-bj0BOLnr_Kt3PYMUWk',
+};
+const cl = new Cloudinary(cloudinary);
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +34,6 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
     LoginComponent,
     CompraRealizadaComponent,
     CreateUserComponent,
-    CreateProductComponent,
-    CreateProviderComponent,
-    CreateCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +41,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CloudinaryModule
   ],
   providers: [],
   bootstrap: [AppComponent],

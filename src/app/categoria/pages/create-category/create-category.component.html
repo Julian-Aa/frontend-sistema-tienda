@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Crear Categoría</h2>
+  <form (submit)="createCategory()">
+    <div class="form-group col-md-6">
+      <label for="name">Nombre de la Categoría:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="newCategory.name" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Categoría</button>
+  </form>
+
+  <div *ngIf="categoriaCreada" class="alert alert-success mt-3">
+    Categoría creada correctamente.
+    <button class="close" (click)="cerrarConfirmacion()">&times;</button>
+  </div>
+</div>
+<div class="container">
+  <h2>Listado de Categorías</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categoria of categories">
+        <td>{{ categoria.name }}</td>
+        <td>
+          <button (click)="editarCategoria(categoria)" class="btn btn-primary">Editar</button>
+          <button (click)="eliminarCategoria(categoria)" class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

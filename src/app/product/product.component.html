@@ -18,7 +18,6 @@
           >
             {{ category.name }}
           </option>
-          <!-- Agrega opciones para todas tus categorías aquí -->
         </select>
       </div>
     </div>
@@ -26,7 +25,7 @@
   <div class="row">
     <div class="col-md-4" *ngFor="let product of filteredProducts">
       <a href="comprar/{{ product.productoId }}">
-        <div class="card mb-4 h-100">
+        <div class="card mb-4 h-100" *ngIf="product.quantity > 0">
           <img
             class="card-img-top"
             src="{{ product.image }}"
@@ -35,10 +34,8 @@
           />
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">
-              Precio: {{ product.price | currency : '' }}
-            </p>
-            <p class="card-text">Categoría: {{ product.categoryName }}</p>
+            <p class="card-text">Precio: {{ product.price | currency : "" }}</p>
+            <p class="card-text">Categoría: {{ product.category.name }}</p>
           </div>
         </div>
       </a>

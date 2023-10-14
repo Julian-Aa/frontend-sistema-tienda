@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Buscar Producto</h2>
+    <form (submit)="searchProducts()">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="searchTerm" name="searchTerm" class="form-control" placeholder="Ingrese el término de búsqueda" />
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+  
+    <div *ngIf="searchResults.length > 0">
+      <h3>Resultados de la búsqueda</h3>
+      <ul>
+        <li *ngFor="let product of searchResults">
+          {{ product.name }} - {{ product.description }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

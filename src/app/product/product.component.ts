@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './product.model';
 import { ProductoService } from './product.service';
-import { Categoria } from '../create-category/category.model';
+import { Categoria } from '../categoria/pages/create-category/category.model';
 
 @Component({
   selector: 'app-producto',
@@ -9,9 +9,9 @@ import { Categoria } from '../create-category/category.model';
   styleUrls: ['./product.component.css'],
 })
 export class ProductoComponent implements OnInit {
-  categories!: Categoria[]; // Almacena las categorías obtenidas del backend
-  selectedCategoryId: number = 0; // Almacena la categoría seleccionada por el usuario
-  products!: Producto[]; // Almacena todos los productos obtenidos del backend
+  categories!: Categoria[];
+  selectedCategoryId: number = 0;
+  products!: Producto[];
   filteredProducts!: any[];
 
   constructor(private productService: ProductoService) {}
