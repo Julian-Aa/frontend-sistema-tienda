@@ -33,7 +33,7 @@ const routes: Routes = [
 
   { path: 'listar-productos', component: ProductoComponent },
   { path: 'comprar/:id', component: ComprarComponent },
-  { path: '', redirectTo: 'productos', pathMatch: 'full' },
+  { path: '', redirectTo: 'listar-productos', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'compra-realizada', component: CompraRealizadaComponent },
   { path: 'create-user', component: CreateUserComponent },

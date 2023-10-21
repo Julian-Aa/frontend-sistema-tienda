@@ -5,7 +5,6 @@ import { CategoriaService } from 'src/app/categoria/pages/create-category/create
 import { CreateProviderService } from 'src/app/provider/pages/create-provider/create-provider.service';
 import { Producto } from 'src/app/product/product.model';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-product',
@@ -32,7 +31,8 @@ export class CreateProductComponent implements OnInit {
       email: '',
     },
   };
-  selectedFile: File | null = null;
+  fileToUpload: File | null = null;
+  imageUrl: string = '';
   products!: Producto[];
   selectedProvider: any = 0;
   providers: any[] = [];
@@ -45,16 +45,13 @@ export class CreateProductComponent implements OnInit {
     private router: Router,
     private productService: ProductoService,
     private providerService: CreateProviderService,
-    private categoryService: CategoriaService,
-    private http: HttpClient,
-    private cloudinary: Cloudinary
+    private categoryService: CategoriaService
   ) {}
 
   ngOnInit(): void {
     this.actualizarListaProductos();
     this.loadCategories();
     this.loadProviders();
-    const cld = new Cloudinary({ cloud: { cloudName: 'dnmrig3sg' } });
   }
   loadCategories() {
     this.categoryService.get().subscribe((data) => {
@@ -67,21 +64,26 @@ export class CreateProductComponent implements OnInit {
       this.providers = data;
     });
   }
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+  handleFileInput(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const fileList = inputElement.files;
+
+    if (fileList && fileList.length > 0) {
+      this.fileToUpload = fileList[0];
+      this.uploadFile(); // Cargar automáticamente el archivo seleccionado
+    }
   }
 
-  uploadImage(): void {
-    if (this.selectedFile && this.selectedFile.length == 1) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-
-      this.http
-        .post('tu_ruta_de_procesamiento', formData)
-        .subscribe((response) => {
-          // Manejar la respuesta del servidor aquí
-          console.log('Imagen subida exitosamente', response);
-        });
+  uploadFile() {
+    if (this.fileToUpload) {
+      this.productService.addProducto(this.fileToUpload).subscribe(
+        (imageUrl) => {
+          this.imageUrl = imageUrl;
+        },
+        (error) => {
+          console.error('Error al subir el archivo:', error);
+        }
+      );
     }
   }
   createProduct(): void {
@@ -90,7 +92,7 @@ export class CreateProductComponent implements OnInit {
       this.productService.createProduct(producto).subscribe(
         (response) => {
           console.log('Producto agregado exitosamente:', response);
-          this.actualizarListaProductos;
+          this.actualizarListaProductos();
         },
         (error) => {
           console.error('Error al agregar producto:', error);
@@ -104,7 +106,7 @@ export class CreateProductComponent implements OnInit {
     this.router.navigate(['productos/edit-product/' + producto.productoId]);
   }
 
-  eliminarProducto(producto: any) {
+  eliminarProducto(producto: Producto) {
     const confirmacion = confirm(
       `¿Estás seguro de que deseas eliminar el producto "${producto.name}"?`
     );

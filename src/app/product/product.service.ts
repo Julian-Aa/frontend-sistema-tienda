@@ -19,11 +19,22 @@ export class ProductoService {
     return this.http.get<Categoria[]>(this.apiUrl + id);
   }
   getByIdProducto(id: number): Observable<Producto[]> {
-    return this.http.get<Producto[]>('http://localhost:8080/api/productos/' + id);
+    return this.http.get<Producto[]>(
+      'http://localhost:8080/api/productos/' + id
+    );
   }
   createProduct(product: Producto): Observable<any> {
     return this.http.post(this.apiUrl, product);
   }
+  addProducto(file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<string>(
+      'http://localhost:8080/api/productos/image-rest',
+      formData
+    );
+  }
+
   put(id: number, producto: Producto): Observable<any> {
     return this.http.put('http://localhost:8080/api/productos/' + id, producto);
   }
