@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
-import { UserService } from './user.service'; // Importa tu servicio de usuario aquí
+import { Router } from '@angular/router';
+import { RegisterService } from './register.service';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
 })
-export class CreateUserComponent {
+export class RegisterComponent {
   newUser: any = {}; // Objeto para almacenar los datos del nuevo usuario
   errorMessage: string = ''; // Define la propiedad errorMessage
 
-  constructor(private userService: UserService) {}
+  constructor(private registerService: RegisterService, private router: Router) {}
 
   createUser() {
-    this.userService.createUser(this.newUser).subscribe(
+    this.registerService.createUser(this.newUser).subscribe(
       (response) => {
         console.log('Usuario creado exitosamente:', response);
+        this.router.navigate(['/auth/login'])
       },
       (error) => {
         console.error('Error al crear usuario:', error);

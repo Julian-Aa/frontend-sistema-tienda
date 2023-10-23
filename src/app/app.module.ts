@@ -10,11 +10,10 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { SearchProductComponent } from './search-product/pages/search-product/search-product.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +24,7 @@ import { SearchProductComponent } from './search-product/pages/search-product/se
     NavbarComponent,
     ComprarComponent,
     StarRatingComponent,
-    LoginComponent,
     CompraRealizadaComponent,
-    CreateUserComponent,
   ],
   imports: [
     BrowserModule,

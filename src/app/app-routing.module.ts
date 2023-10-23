@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductoComponent } from './product/product.component';
 import { ComprarComponent } from './comprar/comprar.component';
-import { LoginComponent } from './login/login.component';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { SearchProductComponent } from './search-product/pages/search-product/search-product.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: 'category',
     loadChildren: () =>
@@ -34,9 +37,7 @@ const routes: Routes = [
   { path: 'listar-productos', component: ProductoComponent },
   { path: 'comprar/:id', component: ComprarComponent },
   { path: '', redirectTo: 'listar-productos', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
   { path: 'compra-realizada', component: CompraRealizadaComponent },
-  { path: 'create-user', component: CreateUserComponent },
   { path: 'buscar-producto', component: SearchProductComponent },
 ];
 
