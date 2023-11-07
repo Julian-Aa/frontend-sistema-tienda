@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2>Historial de Compras</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compra of historialCompras">
+          <td>{{ compra.fecha }}</td>
+          <td>{{ compra.producto }}</td>
+          <td>{{ compra.cantidad }}</td>
+          <td>{{ compra.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

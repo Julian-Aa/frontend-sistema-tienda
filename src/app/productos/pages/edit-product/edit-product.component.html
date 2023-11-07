@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h2>Editar Producto</h2>
   <form (submit)="guardarCambios()">
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="nombre" class="form-label">Nombre del Producto</label>
       <input
         type="text"
@@ -12,7 +12,7 @@
         required
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="descripcion" class="form-label">Descripción</label>
       <textarea
         [(ngModel)]="producto.description"
@@ -22,7 +22,7 @@
         required
       ></textarea>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="precio">Precio:</label>
       <input
         type="number"
@@ -37,7 +37,7 @@
         El precio no puede ser negativo.
       </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="quantity">Cantidad:</label>
       <input
         type="number"
@@ -52,18 +52,33 @@
         La cantidad no puede ser negativa.
       </div>
     </div>
-    <div class="mb-3">
-      <label for="imagen" class="form-label">URL de la Imagen</label>
-      <input
-        type="text"
-        [(ngModel)]="producto.image"
-        name="imagen"
-        class="form-control"
-        id="imagen"
-        required
-      />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Subir Archivo</div>
+            <div class="card-body">
+              <input
+                type="file"
+                class="form-control"
+                (change)="handleFileInput($event)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4" *ngIf="imageUrl">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Imagen Subida</div>
+            <div class="card-body">
+              <img [src]="imageUrl" alt="Imagen subida" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="categoria" class="form-label">ID de Categoría</label>
       <input
         type="text"
@@ -74,7 +89,7 @@
         required
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <label for="proveedor" class="form-label">ID de Proveedor</label>
       <input
         type="text"
@@ -85,7 +100,7 @@
         required
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-3 col-md-6">
       <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </div>
   </form>

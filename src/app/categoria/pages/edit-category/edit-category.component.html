@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <h2>Editar Categoría</h2>
+    <form (submit)="saveCategory()">
+      <div class="form-group col-md-6">
+        <label for="name">Nombre de la Categoría:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="category.name" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar Categoría</button>
+    </form>
+  </div>

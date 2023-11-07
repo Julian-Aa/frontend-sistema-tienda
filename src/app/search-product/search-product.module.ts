@@ -6,17 +6,14 @@ import { SearchProductComponent } from './pages/search-product/search-product.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
-  declarations: [
-    SearchProductComponent
-  ],
+  declarations: [SearchProductComponent],
   imports: [
     CommonModule,
     SearchProductRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
-export class SearchProductModule { }
+export class SearchProductModule {}

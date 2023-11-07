@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
-import { User } from '../register/user.model';
-import { Router, RouterLink } from '@angular/router';
+import { User } from '../../core/models/user.model';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,11 @@ export class LoginComponent {
   usuario: User = {
     id: 0,
     name: '',
-    userName: '',
+    lastName: '',
     email: '',
     address: '',
     phone: '',
-    type: '',
+    rol: '',
     password: '',
   };
   constructor(private http: LoginService, private router: Router) {
@@ -29,31 +30,47 @@ export class LoginComponent {
       password: new FormControl('', Validators.required),
     });
   }
-
+  ngOnInit(): void {
+    sessionStorage.clear();
+  }
   login() {
-    if (this.formLogin.valid) {
+    const email = this.formLogin.value.email;
+    const password = this.formLogin.value.password;
+  
+    if (email && password) {
       const usuario: User = {
         id: 0,
         name: '',
-        userName: '',
-        email: this.formLogin.value.email,
+        lastName: '',
+        email: email,
         address: '',
         phone: '',
-        type: '',
-        password: this.formLogin.value.password,
+        rol: '',
+        password:password,
       };
-
+  
       this.http.post(usuario).subscribe(
         (user: any) => {
-          console.log('Usuario autenticado:', user);
-          this.router.navigate(['/category']);
+          sessionStorage.setItem('user', JSON.stringify(user));
+          console.log(user.id)
+          this.router.navigate(['/main/listar-productos']);
         },
         (error) => {
           console.error('Error al iniciar sesión:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Inicio de sesión fallido',
+            text: 'Verifica tus credenciales e intenta nuevamente.',
+          });
         }
       );
     } else {
-      console.log('fallo');
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacíos',
+        text: 'Por favor, completa ambos campos (correo y contraseña).',
+      });
     }
   }
+
 }

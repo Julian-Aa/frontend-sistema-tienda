@@ -1,9 +1,16 @@
-<div class="container">
-  <h2>Crear Categoría</h2>
+<div class="container mt-5">
+  <h2>Agregar Categoría</h2>
   <form (submit)="createCategory()">
     <div class="form-group col-md-6">
       <label for="name">Nombre de la Categoría:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="newCategory.name" class="form-control" required>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="newCategory.name"
+        class="form-control"
+        required
+      />
     </div>
     <button type="submit" class="btn btn-primary">Crear Categoría</button>
   </form>
@@ -13,7 +20,7 @@
     <button class="close" (click)="cerrarConfirmacion()">&times;</button>
   </div>
 </div>
-<div class="container">
+<div class="container mt-5">
   <h2>Listado de Categorías</h2>
 
   <table class="table">
@@ -27,8 +34,20 @@
       <tr *ngFor="let categoria of categories">
         <td>{{ categoria.name }}</td>
         <td>
-          <button (click)="editarCategoria(categoria)" class="btn btn-primary">Editar</button>
-          <button (click)="eliminarCategoria(categoria)" class="btn btn-danger">Eliminar</button>
+          <div class="button-container">
+            <button
+              (click)="editarCategoria(categoria)"
+              class="btn btn-primary"
+            >
+              Editar
+            </button>
+            <button
+              (click)="eliminarCategoria(categoria)"
+              class="btn btn-danger"
+            >
+              Eliminar
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>

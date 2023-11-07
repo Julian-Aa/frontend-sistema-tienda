@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h1 class="my-4">Lista de Productos</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="categorySelect">Seleccione una categoría:</label>
+        <select
+          class="form-control"
+          id="categorySelect"
+          [(ngModel)]="selectedCategoryId"
+          (change)="filterProducts()"
+        >
+          <option value="0">Todas las categorías</option>
+          <option
+            *ngFor="let category of categories"
+            [value]="category.categoryId"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of filteredProducts">
+      <a href="/main/comprar/{{ product.productoId }}">
+        <div class="card mb-4 h-100" *ngIf="product.quantity > 0">
+          <img
+            class="card-img-top"
+            src="{{ product.image }}"
+            alt="{{ product.name }}"
+            style="height: 250px"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Precio: {{ product.price | currency : "" }}</p>
+            <p class="card-text">Categoría: {{ product.category.name }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

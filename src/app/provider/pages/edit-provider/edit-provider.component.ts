@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CreateProviderService } from '../create-provider/create-provider.service';
-import { Provider } from '../create-provider/provider.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-provider',
@@ -17,10 +17,8 @@ export class EditProviderComponent {
   ) {}
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
-    // Verifica si idParam tiene un valor antes de intentar convertirlo a número
     if (idParam !== null) {
-      this.proveedor.idProveedor = +idParam; // Convierte el valor a número
-      console.log('ID del usuario:', this.proveedor.idProveedor);
+      this.proveedor.idProveedor = +idParam;
       this.createPorvider
         .getProviderByID(this.proveedor.idProveedor)
         .subscribe((data) => {
@@ -36,12 +34,16 @@ export class EditProviderComponent {
       .subscribe(
         (response) => {
           console.log('Perfil actualizado exitosamente:', response);
-          this.router.navigate(['/provider/create-provider']);
+          Swal.fire('Éxito', 'Perfil actualizado exitosamente', 'success').then(
+            () => {
+              this.router.navigate(['/main/provider/create-provider']);
+            }
+          );
         },
         (error) => {
           console.error('Error al actualizar el perfil:', error);
+          Swal.fire('Error', 'Hubo un error al actualizar el perfil', 'error');
         }
       );
-    console.log('Perfil actualizado:', this.proveedor);
   }
 }

@@ -6,14 +6,26 @@
       </div>
       <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
-  
     <div *ngIf="searchResults.length > 0">
       <h3>Resultados de la búsqueda</h3>
-      <ul>
-        <li *ngFor="let product of searchResults">
-          {{ product.name }} - {{ product.description }}
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of searchResults">
+          <a href="comprar/{{ product.productoId }}">
+            <div class="card mb-4 h-100" *ngIf="product.quantity > 0">
+              <img
+                class="card-img-top"
+                src="{{ product.image }}"
+                alt="{{ product.name }}"
+                style="height: 250px"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">Precio: {{ product.price | currency : "" }}</p>
+                <p class="card-text">Categoría: {{ product.category.name }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
     </div>
   </div>
   

@@ -1,11 +1,21 @@
 <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="alert alert-success">
-          <h4>Compra realizada con éxito</h4>
-          <p>¡Gracias por tu compra! Tu producto ha sido adquirido.</p>
-        </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="alert alert-success">
+        <h4>Compra realizada con éxito</h4>
+        <p>¡Gracias por tu compra!</p>
+
+        <p>Producto: {{ producto.name }}</p>
+        <p>Cantidad: {{ producto.quantity }}</p>
+        <p>Total: ${{ producto.price }}</p>
+
+        <h5>Información del usuario:</h5>
+        <p>Nombre: {{ newUser.name }} {{ newUser.lastName }}</p>
+        <p>Correo electrónico: {{ newUser.email }}</p>
+
+        <h5>Dirección de envío:</h5>
+        <p>{{ newUser.address }}</p>
       </div>
     </div>
   </div>
-  
+</div>

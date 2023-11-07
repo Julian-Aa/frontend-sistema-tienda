@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CreateProviderService } from './create-provider.service';
-import { Provider } from './provider.model';
+import { Provider } from '../../../core/models/provider.model';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-provider',
@@ -57,23 +58,39 @@ export class CreateProviderComponent {
     return null;
   }
   editarProveedor(proveedor: any) {
-    this.router.navigate(['/provider/edit-provider/' + proveedor.idProveedor]);
+    this.router.navigate(['/main/provider/edit-provider/' + proveedor.idProveedor]);
   }
 
   eliminarProveedor(proveedor: any) {
-    const confirmacion = confirm(
-      `¿Estás seguro de que deseas eliminar el proveedor "${proveedor.name}"?`
-    );
-    if (confirmacion) {
-      this.providerService.delete(proveedor.idProveedor).subscribe(
-        () => {
-          this.loadProviders();
-        },
-        (error) => {
-          console.error('Error al eliminar el proveedor:', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: `¿Estás seguro de que deseas eliminar el proveedor "${proveedor.name}"?`,
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.providerService.delete(proveedor.idProveedor).subscribe(
+          () => {
+            Swal.fire(
+              'Eliminado',
+              'El proveedor ha sido eliminado con éxito.',
+              'success'
+            );
+            this.loadProviders();
+          },
+          (error) => {
+            console.error('Error al eliminar el proveedor:', error);
+            Swal.fire(
+              'Error',
+              'Hubo un problema al eliminar el proveedor.',
+              'error'
+            );
+          }
+        );
+      }
+    });
   }
   cerrarConfirmacion() {
     this.proveedorAgregado = false;

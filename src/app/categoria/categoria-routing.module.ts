@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateCategoryComponent } from './pages/create-category/create-category.component';
-import { EditCategoryComponent } from './pages/edit-categories/edit-category.component';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       { path: 'create-category', component: CreateCategoryComponent },
-      { path: 'edit-category', component: EditCategoryComponent },
+      { path: 'edit-category/:id', component: EditCategoryComponent },
       { path: '**', redirectTo: 'create-category' },
     ],
   },

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductoComponent } from './product/product.component';
+import { ProductoComponent } from './product/pages/product/product.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
-import { SearchProductComponent } from './search-product/pages/search-product/search-product.component';
+import { MainComponent } from './main/main/main.component';
+import { guardGuard } from './core/guards/guard.guard';
+import { Utils } from './core/utils/utils';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -11,21 +13,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  {
-    path: 'category',
-    loadChildren: () =>
-      import('./categoria/categoria.module').then((m) => m.CategoriaModule),
-  },
-  {
-    path: 'productos',
-    loadChildren: () =>
-      import('./productos/productos.module').then((m) => m.ProductosModule),
-  },
-  {
-    path: 'provider',
-    loadChildren: () =>
-      import('./provider/provider.module').then((m) => m.ProviderModule),
-  },
+
   {
     path: 'search',
     loadChildren: () =>
@@ -33,12 +21,48 @@ const routes: Routes = [
         (m) => m.SearchProductModule
       ),
   },
-
-  { path: 'listar-productos', component: ProductoComponent },
-  { path: 'comprar/:id', component: ComprarComponent },
-  { path: '', redirectTo: 'listar-productos', pathMatch: 'full' },
-  { path: 'compra-realizada', component: CompraRealizadaComponent },
-  { path: 'buscar-producto', component: SearchProductComponent },
+  {
+    path: 'main',
+    component: MainComponent,
+    canActivate: [guardGuard],
+    children: [
+      { path: '', redirectTo: 'main/listar-productos', pathMatch: 'full' },
+      {
+        path: '',
+        component: ProductoComponent,
+        canMatch: [() => Utils.isRole('admin')],
+      },
+      {
+        path: '',
+        component: ProductoComponent,
+        canMatch: [() => Utils.isRole('custom')],
+      },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('./categoria/categoria.module').then((m) => m.CategoriaModule),
+      },
+      {
+        path: 'productos',
+        loadChildren: () =>
+          import('./productos/productos.module').then((m) => m.ProductosModule),
+      },
+      {
+        path: 'provider',
+        loadChildren: () =>
+          import('./provider/provider.module').then((m) => m.ProviderModule),
+      },
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserModule),
+      },
+      { path: 'listar-productos', component: ProductoComponent },
+      { path: 'comprar/:id', component: ComprarComponent },
+      { path: '', redirectTo: 'listar-productos', pathMatch: 'full' },
+      { path: 'compra-realizada/:id', component: CompraRealizadaComponent },
+    ],
+  },
 ];
 
 @NgModule({

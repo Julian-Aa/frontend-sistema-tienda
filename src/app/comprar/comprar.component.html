@@ -1,19 +1,50 @@
 <div class="container mt-5">
   <div class="row">
-    <!-- Detalles del Producto -->
     <div class="col-md-8">
       <div class="card">
-        <img class="card-img-top" src="{{producto.image}}" alt="Product Image" />
+        <img
+          class="card-img-top"
+          src="{{ producto.image }}"
+          alt="Product Image"
+        />
         <div class="card-body">
-          <h5 class="card-title">{{producto.name}}</h5>
-          <p class="card-text">{{producto.description}}</p>
-          <p class="card-text">Precio: {{producto.price | currency:''}}</p>
-          <p class="card-text">Stock: {{producto.quantity}}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <button class="btn btn-primary" (click)="comprar()">Comprar</button>
-            <button class="btn btn-secondary" (click)="agregarAlCarrito()">Añadir al Carrito</button>
+          <h5 class="card-title">{{ producto.name }}</h5>
+          <p class="card-text">{{ producto.description }}</p>
+          <p class="card-text">Precio: {{ producto.price | currency : "" }}</p>
+          <p class="card-text">Stock: {{ producto.quantity }}</p>
+          <div class="input-group mb-3 col-md-6">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="cantidad-addon">Cantidad</span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              id="cantidad"
+              [(ngModel)]="cantidad"
+              min="1"
+              max="{{ producto.quantity }}"
+            />
           </div>
-          
+          <div *ngIf="cantidad > producto.quantity" class="alert alert-danger">
+            La cantidad seleccionada supera el stock disponible.
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <button
+              class="btn btn-primary"
+              [disabled]="cantidad > producto.quantity"
+              (click)="comprar()"
+            >
+              Comprar
+            </button>
+            <button
+              class="btn btn-secondary"
+              [disabled]="cantidad > producto.quantity"
+              (click)="agregarAlCarrito()"
+            >
+              Añadir al Carrito
+            </button>
+          </div>
+
           <div class="mt-3">
             <span>Calificación del vendedor: 4.5</span>
             <div>
@@ -24,17 +55,12 @@
               </ul>
             </div>
           </div>
-          <div class="mt-3">
-          </div>
         </div>
       </div>
-
     </div>
 
-    <!-- Otros Productos Similares -->
     <div class="col-md-4">
       <h2>Otros Productos Similares</h2>
-      <!-- Aquí puedes mostrar otros productos similares -->
     </div>
   </div>
 </div>

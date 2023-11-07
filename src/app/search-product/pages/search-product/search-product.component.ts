@@ -7,13 +7,12 @@ import { SearchProductService } from '../search-product.service';
   styleUrls: ['./search-product.component.css']
 })
 export class SearchProductComponent {
-  searchTerm = ''; // Término de búsqueda ingresado por el usuario
-  searchResults: any[] = []; // Almacena los resultados de la búsqueda
+  searchTerm = ''; 
+  searchResults: any[] = []; 
 
   constructor(private productService: SearchProductService) {} // Inyecta el servicio de productos
 
   searchProducts() {
-    // Llama al servicio para realizar la búsqueda de productos
     this.productService.searchProducts(this.searchTerm).subscribe(results => {
       this.searchResults = results;
     });

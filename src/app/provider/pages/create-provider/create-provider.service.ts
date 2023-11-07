@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Provider } from './provider.model';
+import { Provider } from '../../../core/models/provider.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,9 @@ export class CreateProviderService {
     return this.http.get<Provider[]>(this.apiUrl);
   }
   getProviderByID(id: number): Observable<Provider[]> {
-    return this.http.get<Provider[]>('http://localhost:8080/api/provider/' + id);
+    return this.http.get<Provider[]>(
+      'http://localhost:8080/api/provider/' + id
+    );
   }
   createProvider(provider: Provider): Observable<any> {
     return this.http.post(this.apiUrl, provider);
